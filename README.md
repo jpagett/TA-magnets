@@ -1,4 +1,4 @@
-# TA Magnets
+# ID Badges
 
 This tool takes a folder of pictures and an excel sheet of TA names and class assignments, and outputs printable TA ID badges.
 
