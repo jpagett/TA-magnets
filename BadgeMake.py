@@ -17,7 +17,8 @@ outputFolder = 'Output'
 fontFolder = "C:/Windows/fonts"
 Font = "calibri.ttf"
 
-infoPath = "info.xlsx"
+infoTable = "info.xlsx"
+template = "nametagTemplate.png"
 
 log = open(os.path.join(script_dir,outputFolder,"errors.txt"),"w")
 
@@ -26,21 +27,27 @@ def makeTag(FullName, CourseNum):
     multCourse = False
     # workaround -- TAs are for one course until found otherwise
 
-    nameX = 180
-    nameY = 627
+    nameX, nameY = 180, 627
     # pixel location of the name's upper-left corner
 
-    courseX = 728
-    courseY = 255
+    courseX, courseY = 728, 255
     # pixel location of the course number (UL corner)
+
+    imageX, imageY = 100, 100
+    # pixel location of the picture
+    # auto shifts for certain picture dimensions to attempt to center (line 85-92)
+    # very dumb, should rework to center on desired area instead of fixed shifts
+
+    pic_width, pic_height = 500, 450
+    # sets maximum dimensions (scales other to maintain aspect ratio)
 
     FullName = str(FullName)
     First, Last = FullName.split(" ")
 
     font = ImageFont.truetype(os.path.join(fontFolder,Font),100)
 
-    imageFile = os.path.join(script_dir,"nametagTemplate.png")
-    outputPath = os.path.join(outputFolder,First + Last + "_tag.png")
+    imageFile = os.path.join(script_dir,template)
+    outputPath = os.path.join(outputFolder, f'{First}{Last}_tag.png')
     outputImage = os.path.join(script_dir,outputPath)
     im1 = Image.open(imageFile)
 
@@ -68,7 +75,7 @@ def makeTag(FullName, CourseNum):
     im1 = Image.open(outputImage)
     # adds course number text, saves as working instance
 
-    pictureName = First + Last + '.jpg'
+    pictureName = '{}{}.jpg'.format(First,Last)
     picturePath = os.path.join(script_dir,pictureFolder,pictureName)
     picture = Image.open(picturePath)
     # puts together path for and opens picture
@@ -76,19 +83,15 @@ def makeTag(FullName, CourseNum):
     width, height = picture.size
 
     if width > height:
-        new_width  = 500
-        new_height = int(new_width * height / width)
-        imageX = 100
-        imageY = 125
-        if new_height < 300:
-            imageY = 175
+        pic_height = int(pic_width * height / width)
+        imageY += 25
+        if pic_height < 300:
+            imageY += 50
     else:
-        new_height = 400
-        new_width = int(new_height * width / height)
-        imageX = 150
-        imageY = 100
+        pic_width = int(pic_height * width / height)
+        imageX += 50
 
-    picture = picture.resize((new_width, new_height))
+    picture = picture.resize((pic_width, pic_height))
 
     # this clusterfuck decides the size of the pictures, depends on whether
     # portrait or landscape picture
@@ -103,7 +106,7 @@ def makeTag(FullName, CourseNum):
     im1.save(outputImage)
     # saves tag
 
-book = xlrd.open_workbook(os.path.join(script_dir,infoPath))
+book = xlrd.open_workbook(os.path.join(script_dir,infoTable))
 sheet = book.sheet_by_index(0)
 # loads the excel doc of TA names and courses
 # should be formatted as follows:
