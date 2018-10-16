@@ -18,6 +18,13 @@ fontFolder = "C:/Windows/fonts"
 Font = "calibri.ttf"
 
 infoTable = "info.xlsx"
+
+FullNameCol = 0
+# infoTable format: first (index 0) column as FullNames (First Last)
+
+CourseNumCol = 1
+# infoTable format: second (index 1) column as Course Numbers (PHYS 103)
+
 template = "nametagTemplate.png"
 
 log = open(os.path.join(script_dir,outputFolder,"errors.txt"),"w")
@@ -110,12 +117,6 @@ book = xlrd.open_workbook(os.path.join(script_dir,infoTable))
 sheet = book.sheet_by_index(0)
 # loads the excel doc of TA names and courses
 # should be formatted as follows:
-
-FullNameCol = 0
-# first column as FullNames (First Last)
-
-CourseNumCol = 1
-# second column as Course Numbers (PHYS 103)
 
 for k in range(1,sheet.nrows):
 
