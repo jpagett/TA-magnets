@@ -1,10 +1,14 @@
+# TA Magnets
+
+This tool takes a folder of pictures and an excel sheet of TA names and class assignments, and outputs printable TA ID badges.
+
 This tool is built to work with the provided "nametagTemplate.png". Follow these instructions exactly, and it will generate the PSR nametags.
 
 TA pictures need to be named as "FirstLast.jpg".
 
 The Excel sheet provided by the department is messy. Fix it by doing the following:
 
-#1. Removing non-PSR TAs:
+# Removing non-PSR TAs:
 	
 		1. Delete all reader names (beige highlight)
 		
@@ -12,14 +16,14 @@ The Excel sheet provided by the department is messy. Fix it by doing the followi
 		
 		3. Delete all PSR fellow names (at bottom)
 		
-#2. Fix Course Numbers:
+# Fix Course Numbers:
 	
 		The default organization only labels Course Number on the first TA (sometimes first 2+) for a particular course.
 		Additional TAs for the same course will be placed beneath the labeled TA, and will have their Course Numbers blank.
 		
 		1. For each labeled TA with unlabled TAs below them, copy their course assignment downward into the blank spots immediately below them.
 		
-#3. Generate info.xlsx (holds TA data for tag generation):
+# Generate info.xlsx (holds TA data for tag generation):
 
 	1. Create new excel document, info.xlsx, in the folder.
 	
@@ -53,7 +57,7 @@ The Excel sheet provided by the department is messy. Fix it by doing the followi
 			
 			(If serving multiple courses, Format: "Phys #, #")
 
-#To use the tool:
+# To use the tool:
 
 	1. Place the BadgeMake.py, nametagTemplate.png, and the info.xlsx files into a folder.
 
@@ -67,7 +71,7 @@ The Excel sheet provided by the department is messy. Fix it by doing the followi
 	
 		*Names which cause errors (largely, through missing pictures) will be written to errors.txt in the Output folder.
 
-#To print multiple badges per page:
+# To print multiple badges per page:
 
 	1. Navigate in Explorer to the Output folder.
 	
