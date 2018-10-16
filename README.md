@@ -76,22 +76,26 @@ Additional TAs for the same course will be placed beneath the labeled TA, and wi
 5. Reformat Course Numbers: After each step, fill the column with the formula by selecting the top entry and dragging the black square downward over all the entries in that column.
 
 	* Add "Phys" in front of all the course numbers: Go to cell B1. Paste in formula as follows.
-			="Phys "&D1
+				="Phys "&D1
 
 6. Reformat Names:
 
 	* Switch "First, Last" to "Last, First": Go to cell E1. Paste in formula as follows.
-			=MID(C1&" "&C1,FIND(" ",C1)+1,LEN(C1))
+
+				=MID(C1&" "&C1,FIND(" ",C1)+1,LEN(C1))
 
 	* Remove comma from end of names. Go to cell A1. Past in formula as follows.
-			=IF(RIGHT(E1,1)=",",LEFT(E1,LEN(E1)-1),E1)
+
+				=IF(RIGHT(E1,1)=",",LEFT(E1,LEN(E1)-1),E1)
 
 7. The info.xlsx file should now be formatted as:
 
 	* First column: TA Names
-			Format: "First Last"
+
+				Format: "First Last"
 
 	* Second column: Course Number
-			Format: "Phys #"
 
-			(If serving multiple courses, Format: "Phys #, #")
+				Format: "Phys #"
+
+				(If serving multiple courses, Format: "Phys #, #")
