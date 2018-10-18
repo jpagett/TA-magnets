@@ -18,6 +18,13 @@ fontFolder = "C:/Windows/fonts"
 Font = "calibri.ttf"
 
 infoTable = "info.xlsx"
+
+FullNameCol = 0
+# infoTable format: first (index 0) column as FullNames (First Last)
+
+CourseNumCol = 1
+# infoTable format: second (index 1) column as Course Numbers (PHYS 103)
+
 template = "nametagTemplate.png"
 
 log = open(os.path.join(script_dir,outputFolder,"errors.txt"),"w")
@@ -41,8 +48,13 @@ def makeTag(FullName, CourseNum):
     pic_width, pic_height = 500, 450
     # sets maximum dimensions (scales other to maintain aspect ratio)
 
-    FullName = str(FullName)
-    First, Last = FullName.split(" ")
+    if len(Fullname.split()) == 2:
+        First, Last = FullName.split(" ")
+    else:
+        First = FullName.split(' ')[0]
+        LastNames = FullName.split(' ')[1:len(FullName)]
+        Last = ' '.join(LastNames)
+    # sets first name as first word in name, then last name as all other words
 
     font = ImageFont.truetype(os.path.join(fontFolder,Font),100)
 
@@ -75,7 +87,9 @@ def makeTag(FullName, CourseNum):
     im1 = Image.open(outputImage)
     # adds course number text, saves as working instance
 
-    pictureName = '{}{}.jpg'.format(First,Last)
+    LastConcatenated = Last.replace(' ','')
+
+    pictureName = f'{First}{LastConcatenated}.jpg'
     picturePath = os.path.join(script_dir,pictureFolder,pictureName)
     picture = Image.open(picturePath)
     # puts together path for and opens picture
@@ -111,13 +125,7 @@ sheet = book.sheet_by_index(0)
 # loads the excel doc of TA names and courses
 # should be formatted as follows:
 
-FullNameCol = 0
-# first column as FullNames (First Last)
-
-CourseNumCol = 1
-# second column as Course Numbers (PHYS 103)
-
-for k in range(1,sheet.nrows):
+for k in range(0,sheet.nrows):
 
         FullName = sheet.row_values(k)[FullNameCol]
         Course = sheet.row_values(k)[CourseNumCol]
