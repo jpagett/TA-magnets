@@ -9,6 +9,12 @@ be the same as the ones in the Excel document.
 
 # To use the tool:
 
+0. Install xlrd, xlsxwriter, and Pillow. This can be done using pip by running the following:
+
+		pip install xlrd
+		pip install xlsxwriter
+		pip install Pillow
+
 1. Place the BadgeMake.py, nametagTemplate.png, and the info.xlsx files into a
  folder.
 
