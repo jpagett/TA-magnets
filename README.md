@@ -78,11 +78,15 @@ Additional TAs for the same course will be placed beneath the labeled TA, and wi
 	* Add "Phys" in front of all the course numbers: Go to cell B1. Paste in formula as follows.
 				="Phys "&D1
 
-6. Reformat Names:
+6. Reformat Names: After each step, fill the column with the formula by selecting the top entry and dragging the black square downward over all the entries in that column.
+
+	* Remove text following names: Go to cell F1. Paste in forumla as follows.
+	
+				=LEFT(C1,FIND(" ",C1, FIND(" ",C1)+1)-1)
 
 	* Switch "First, Last" to "Last, First": Go to cell E1. Paste in formula as follows.
 
-				=MID(C1&" "&C1,FIND(" ",C1)+1,LEN(C1))
+				=MID(F1&" "&F1,FIND(" ",F1)+1,LEN(F1))
 
 	* Remove comma from end of names. Go to cell A1. Past in formula as follows.
 
