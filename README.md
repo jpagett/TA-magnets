@@ -17,7 +17,7 @@ be the same as the ones in the Excel document. Make sure each name is capitalize
 
 1. Place the BadgeMake.py, nametagTemplate.png, and the info.xlsx files into a
  folder.
- 	* The file info.xlsx should have TA names in first column ( formatted {First} {Last} ) and
+ 	* The file info.xlsx should have TA names in first column ( formatted: {First} {Last} ) and
  the course they TA in the second column ( formatted: {Subject} {Number} ). There should be no headers.
 
 2. Make the subfolders "Output" and "Pictures".
