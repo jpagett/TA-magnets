@@ -48,18 +48,21 @@ def makeTag(FullName, CourseNum):
     pic_width, pic_height = 500, 450
     # sets maximum dimensions (scales other to maintain aspect ratio)
 
-    if len(Fullname.split()) == 2:
+    font = ImageFont.truetype(os.path.join(fontFolder,Font),100)
+
+    if len(FullName.split()) == 2:
         First, Last = FullName.split(" ")
+    # sets first last name for names of length 2
     else:
         First = FullName.split(' ')[0]
         LastNames = FullName.split(' ')[1:len(FullName)]
         Last = ' '.join(LastNames)
     # sets first name as first word in name, then last name as all other words
 
-    font = ImageFont.truetype(os.path.join(fontFolder,Font),100)
+    LastConcatenated = Last.replace(' ','')
 
     imageFile = os.path.join(script_dir,template)
-    outputPath = os.path.join(outputFolder, f'{First}{Last}_tag.png')
+    outputPath = os.path.join(outputFolder, f'{First}{LastConcatenated}_tag.png')
     outputImage = os.path.join(script_dir,outputPath)
     im1 = Image.open(imageFile)
 
@@ -86,8 +89,6 @@ def makeTag(FullName, CourseNum):
     im1.save(outputImage)
     im1 = Image.open(outputImage)
     # adds course number text, saves as working instance
-
-    LastConcatenated = Last.replace(' ','')
 
     pictureName = f'{First}{LastConcatenated}.jpg'
     picturePath = os.path.join(script_dir,pictureFolder,pictureName)
