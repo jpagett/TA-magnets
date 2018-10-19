@@ -5,7 +5,7 @@ This tool takes a folder of pictures and an excel sheet of TA names and class as
 This tool is built to work with the provided "nametagTemplate.png". Follow these instructions exactly, and it will generate the PSR nametags.
 
 TA pictures need to be named as "FirstLast.jpg". The First and Last names must
-be the same as the ones in the Excel document.
+be the same as the ones in the Excel document. Make sure each name is capitalized in the filename.
 
 # To use the tool:
 
@@ -17,11 +17,13 @@ be the same as the ones in the Excel document.
 
 1. Place the BadgeMake.py, nametagTemplate.png, and the info.xlsx files into a
  folder.
+ 	* The file info.xlsx should have TA names in first column ( formatted {First} {Last} ) and
+ the course they TA in the second column ( formatted: {Subject} {Number} ). There should be no headers.
 
 2. Make the subfolders "Output" and "Pictures".
 
 3. Place all the TA pictures in the Pictures folder.
-	* Make sure they are in the correct format!
+	* Make sure they are all in the correct format (FirstLast.jpg).
 
 4. Run BadgeMake.py using run.bat. This will take ~10 seconds.
 
