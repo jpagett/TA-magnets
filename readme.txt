@@ -1,16 +1,16 @@
 This tool is built to work with the provided "nametagTemplate.png". Follow these instructions exactly, and it will generate the PSR nametags.
 
-TA pictures need to be named as "FirstLast.jpg".
+TA/PSR Fellow pictures need to be named as "FirstLast.jpg".
 
 The Excel sheet provided by the department is messy. Fix it by doing the following:
 
 #1. Removing non-PSR TAs:
 	
-		1. Delete all reader names (beige highlight)
+		1. Delete all reader names
 		
-		2. Delete all CCS names (yellow highlight)
+		2. Delete all CCS names
 		
-		3. Delete all PSR fellow names (at bottom)
+		3. Delete names for courses which don't use LAs. To my knowledge this includes 
 		
 #2. Fix Course Numbers:
 	
@@ -21,27 +21,21 @@ The Excel sheet provided by the department is messy. Fix it by doing the followi
 		
 #3. Generate info.xlsx (holds TA data for tag generation):
 
-	1. Create new excel document, info.xlsx, in the folder.
+	1. Create new excel document, info.xlsx, in the folder which holds the generator script.
 	
-	2. Copy column A (TA names) and column J (Course Numbers), paste to columns C and D of new sheet.
+	2. Copy TA names and Course Numbers to columns 1 and 2 in info.xlsx.
 	
 	3. Resolve Multi-class Assignments:
 	
-		* The tool cannot handle duplicate entries -- where a TA is serving for multiple classes.
+		* The tool cannot handle duplicate entries with different course numbers -- where a TA is serving for multiple classes.
 		
 		* Alphabetize by name to identify duplicates. If a TA is serving two courses, combine entries to one row with Course Number as "PHYS #, #"
 	
-	4. Delete row 1.
+	4. Delete header row.
 	
-	5. Reformat Course Numbers: After each step, fill the column with the formula by selecting the top entry and dragging the black square downward over the active rows.
+	5. Reformat Course Numbers: Label them as "Phys {Course Number}"
 		
-		* Go to cell B1. Paste in formula as: ="Phys "&D1
-		
-	6. Reformat Names:
-		
-		* Go to cell E1. Paste in formula as: =MID(C1&" "&C1,FIND(" ",C1)+1,LEN(C1))
-		
-		* Go to cell A1. Past in formula as: =IF(RIGHT(E1,1)=",",LEFT(E1,LEN(E1)-1),E1)
+	6. Reformat Names as "First Last"
 
 	7. The info.xlsx file should now be formatted as:
 
@@ -65,7 +59,7 @@ The Excel sheet provided by the department is messy. Fix it by doing the followi
 
 	5. Completed badges will save to the Output folder.
 	
-		*Names which cause errors (largely, through missing pictures) will be written to errors.txt in the Output folder.
+		*Names which cause errors (missing pictures) will be written to errors.txt in the Output folder.
 
 #To print multiple badges per page:
 
