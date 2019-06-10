@@ -58,7 +58,7 @@ Not all of the people on that list need a badge. There may be other courses whic
 
 3. Delete all PSR fellow names (at bottom).
 
-At the time of writing, the other courses/roles which do not need tags are Physics 127A-B, 128A-B, 13BH, Head TA, 260J, and 25L.
+At the time of writing, the other courses/roles which do not need tags are Physics 127A-B, 128A-B, 129, 13BH, 260J, and 25L.
 
 ## Fix Course Numbers:
 
@@ -71,7 +71,7 @@ Additional TAs for the same course will be placed beneath the labeled TA, and wi
 
 1. Create new excel document, info.xlsx, in the same folder as the BadgeMake file.
 
-2. Copy the column with the TA names (Column A) and the column with the Course Numbers (column J), and paste them to columns C and D of info.xlsx.
+2. Copy the column with the TA names and the column with the Course Numbers, and paste them to columns C and D of info.xlsx.
 
 3. Resolve Multi-class Assignments:
 
@@ -81,24 +81,11 @@ Additional TAs for the same course will be placed beneath the labeled TA, and wi
 
 4. Delete row 1. There should be no headers for the columns.
 
-5. Reformat Course Numbers: After each step, fill the column with the formula by selecting the top entry and dragging the black square downward over all the entries in that column.
+5. Reformat Course Numbers.
 
-	* Add "Phys" in front of all the course numbers: Go to cell B1. Paste in formula as follows.
-				="Phys "&D1
+6. Reformat Names: The default organization only labels Course Number on the first TA (sometimes first 2+) for a particular course. Additional TAs for the same course will be placed beneath the labeled TA, and will have their Course Numbers blank. Copy these to the entries below before changing any ordering on the spreadsheet.
 
-6. Reformat Names: After each step, fill the column with the formula by selecting the top entry and dragging the black square downward over all the entries in that column.
-
-	* Remove text following names: Go to cell F1. Paste in forumla as follows.
-	
-				=LEFT(C1,FIND(" ",C1, FIND(" ",C1)+1)-1)
-
-	* Switch "First, Last" to "Last, First": Go to cell E1. Paste in formula as follows.
-
-				=MID(F1&" "&F1,FIND(" ",F1)+1,LEN(F1))
-
-	* Remove comma from end of names. Go to cell A1. Past in formula as follows.
-
-				=IF(RIGHT(E1,1)=",",LEFT(E1,LEN(E1)-1),E1)
+	* Reformat names to "{First} {Last}".
 
 7. The info.xlsx file should now be formatted as:
 
@@ -111,3 +98,5 @@ Additional TAs for the same course will be placed beneath the labeled TA, and wi
 				Format: "Phys #"
 
 				(If serving multiple courses, Format: "Phys #, #")
+				
+8. Run tool to generate badges. See "To Use the Tool" for details.
